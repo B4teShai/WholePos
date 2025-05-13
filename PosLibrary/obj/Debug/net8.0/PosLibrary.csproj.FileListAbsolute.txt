@@ -1,0 +1,14 @@
+C:\Users\Dell\Desktop\lesson\Junior\windows\Pos\PosLibrary\bin\Debug\net8.0\PosLibrary.deps.json
+C:\Users\Dell\Desktop\lesson\Junior\windows\Pos\PosLibrary\bin\Debug\net8.0\PosLibrary.runtimeconfig.json
+C:\Users\Dell\Desktop\lesson\Junior\windows\Pos\PosLibrary\bin\Debug\net8.0\PosLibrary.dll
+C:\Users\Dell\Desktop\lesson\Junior\windows\Pos\PosLibrary\bin\Debug\net8.0\PosLibrary.pdb
+C:\Users\Dell\Desktop\lesson\Junior\windows\Pos\PosLibrary\obj\Debug\net8.0\PosLibrary.csproj.AssemblyReference.cache
+C:\Users\Dell\Desktop\lesson\Junior\windows\Pos\PosLibrary\obj\Debug\net8.0\PosLibrary.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Dell\Desktop\lesson\Junior\windows\Pos\PosLibrary\obj\Debug\net8.0\PosLibrary.AssemblyInfoInputs.cache
+C:\Users\Dell\Desktop\lesson\Junior\windows\Pos\PosLibrary\obj\Debug\net8.0\PosLibrary.AssemblyInfo.cs
+C:\Users\Dell\Desktop\lesson\Junior\windows\Pos\PosLibrary\obj\Debug\net8.0\PosLibrary.csproj.CoreCompileInputs.cache
+C:\Users\Dell\Desktop\lesson\Junior\windows\Pos\PosLibrary\obj\Debug\net8.0\PosLibrary.dll
+C:\Users\Dell\Desktop\lesson\Junior\windows\Pos\PosLibrary\obj\Debug\net8.0\refint\PosLibrary.dll
+C:\Users\Dell\Desktop\lesson\Junior\windows\Pos\PosLibrary\obj\Debug\net8.0\PosLibrary.pdb
+C:\Users\Dell\Desktop\lesson\Junior\windows\Pos\PosLibrary\obj\Debug\net8.0\PosLibrary.genruntimeconfig.cache
+C:\Users\Dell\Desktop\lesson\Junior\windows\Pos\PosLibrary\obj\Debug\net8.0\ref\PosLibrary.dll
