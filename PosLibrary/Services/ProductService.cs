@@ -54,6 +54,28 @@ namespace PosLibrary.Services
         }
 
         /// <summary>
+        /// Retrieves all categories asynchronously
+        /// </summary>
+        /// <returns>A list of all categories</returns>
+        public async Task<List<Category>> GetCategoriesAsync()
+        {
+            return await _context.Categories.ToListAsync();
+        }
+
+        /// <summary>
+        /// Gets products by category ID
+        /// </summary>
+        /// <param name="categoryId">The category ID to filter by</param>
+        /// <returns>A list of products in the specified category</returns>
+        public async Task<List<Product>> GetProductsByCategoryAsync(int categoryId)
+        {
+            return await _context.Products
+                .Include(p => p.Category)
+                .Where(p => p.CategoryId == categoryId)
+                .ToListAsync();
+        }
+
+        /// <summary>
         /// Системд шинэ бүтээгдэхүүн нэмнэ.
         /// </summary>
         /// <param name="product">Нэмэх бүтээгдэхүүн.</param>
@@ -104,6 +126,75 @@ namespace PosLibrary.Services
                 if (product != null)
                 {
                     _context.Products.Remove(product);
+                    await _context.SaveChangesAsync();
+                    return true;
+                }
+                return false;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// Adds a new category to the system
+        /// </summary>
+        /// <param name="category">The category to add</param>
+        /// <returns>True if successful, false otherwise</returns>
+        public async Task<bool> AddCategory(Category category)
+        {
+            try
+            {
+                await _context.Categories.AddAsync(category);
+                await _context.SaveChangesAsync();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// Updates an existing category in the system
+        /// </summary>
+        /// <param name="category">The category to update</param>
+        /// <returns>True if successful, false otherwise</returns>
+        public async Task<bool> UpdateCategory(Category category)
+        {
+            try
+            {
+                _context.Categories.Update(category);
+                await _context.SaveChangesAsync();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// Deletes a category from the system
+        /// </summary>
+        /// <param name="categoryId">The ID of the category to delete</param>
+        /// <returns>True if successful, false otherwise</returns>
+        public async Task<bool> DeleteCategory(int categoryId)
+        {
+            try
+            {
+                // Check if any products use this category
+                bool hasProducts = await _context.Products.AnyAsync(p => p.CategoryId == categoryId);
+                if (hasProducts)
+                {
+                    return false; // Can't delete category that's in use
+                }
+
+                var category = await _context.Categories.FindAsync(categoryId);
+                if (category != null)
+                {
+                    _context.Categories.Remove(category);
                     await _context.SaveChangesAsync();
                     return true;
                 }

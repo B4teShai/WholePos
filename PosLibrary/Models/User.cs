@@ -1,35 +1,46 @@
 using System;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace PosLibrary.Models
 {
     /// <summary>
     /// POS системд хэрэглэгчдийн үүсгэнэ.
     /// </summary>
+    public enum UserRole
+    {
+        Manager,
+        Cashier1,
+        Cashier2
+    }
+
     public abstract class User
     {
         /// <summary>
         /// Хэрэглэгчийн ID.
         /// </summary>
+        [Key]
         public int Id { get; set; }
 
         /// <summary>
         /// Хэрэглэгчийн нэр.
         /// </summary>
         [Required]
-        public string Username { get; set; } = string.Empty;
+        [StringLength(50)]
+        public string Username { get; set; }
 
         /// <summary>
         /// Хэрэглэгчийн нууц үг.
         /// </summary>
         [Required]
-        public string Password { get; set; } = string.Empty;
+        [StringLength(100)]
+        public string Password { get; set; }
 
         /// <summary>
         /// Хэрэглэгчийн эрхийг илэрхийлнэ.
         /// </summary>
         [Required]
-        public string Role { get; set; } = string.Empty;
+        public UserRole Role { get; set; }
 
         /// <summary>
         /// Хэрэглэгч бүтээгдэхүүн өөрчилж чадах эсэхийг илэрхийлнэ.
@@ -44,6 +55,12 @@ namespace PosLibrary.Models
         public abstract bool CanDeleteProducts();
 
         public bool IsActive { get; set; } = true;
+
+        public DateTime CreatedAt { get; set; } = DateTime.Now;
+
+        public DateTime? UpdatedAt { get; set; }
+
+        public DateTime? LastLoginAt { get; set; }
     }
 
     /// <summary>
@@ -51,12 +68,14 @@ namespace PosLibrary.Models
     /// </summary>
     public class Manager : User
     {
+        public string FullName { get; set; } = string.Empty;
+
         /// <summary>
         /// Менежер хэрэглэгч классын шинэ жишээг эхлүүлнэ.
         /// </summary>
         public Manager()
         {
-            Role = "Manager";
+            Role = UserRole.Manager;
         }
 
         /// <summary>
@@ -83,12 +102,14 @@ namespace PosLibrary.Models
     /// </summary>
     public class Cashier : User
     {
+        public string FullName { get; set; } = string.Empty;
+
         /// <summary>
         /// Кассир хэрэглэгч классын шинэ жишээг эхлүүлнэ.
         /// </summary>
         public Cashier()
         {
-            Role = "Cashier";
+            Role = UserRole.Cashier1;
         }
 
         /// <summary>

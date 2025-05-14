@@ -24,6 +24,16 @@ namespace PosLibrary.Services
         }
 
         /// <summary>
+        /// SaleService классын шинэ жишээг эхлүүлнэ, ProductService-ийг дотооддоо үүсгэнэ.
+        /// </summary>
+        /// <param name="context">Борлуулалтын үйлдлийн өгөгдлийн сангийн контекст.</param>
+        public SaleService(ApplicationDbContext context)
+        {
+            _context = context;
+            _productService = new ProductService(context);
+        }
+
+        /// <summary>
         /// Шинэ борлуулалтын гүйлгээ үүсгэж, бүтээгдэхүүний тоо хэмжээг шинэчилнэ.
         /// </summary>
         /// <param name="sale">Үүсгэх борлуулалтын гүйлгээ.</param>
@@ -54,9 +64,8 @@ namespace PosLibrary.Services
         {
             return await _context.Sales
                 .Include(s => s.Items)
-                    .ThenInclude(i => i.Product)
                 .Include(s => s.User)
-                .Where(s => s.Date.Date == date.Date)
+                .Where(s => s.CreatedAt.Date == date.Date)
                 .ToListAsync();
         }
 
@@ -69,7 +78,6 @@ namespace PosLibrary.Services
         {
             return await _context.Sales
                 .Include(s => s.Items)
-                    .ThenInclude(i => i.Product)
                 .Include(s => s.User)
                 .FirstOrDefaultAsync(s => s.Id == saleId);
         }
@@ -96,7 +104,7 @@ namespace PosLibrary.Services
         /// <returns>Өгөх хариултын дүнг буцаана.</returns>
         public decimal CalculateChange(Sale sale)
         {
-            return sale.AmountPaid - sale.TotalAmount;
+            return sale.AmountPaid - sale.Total;
         }
     }
 } 

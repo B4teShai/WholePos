@@ -1,5 +1,7 @@
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace PosLibrary.Models
 {
@@ -13,24 +15,25 @@ namespace PosLibrary.Models
         /// </summary>
         public Sale()
         {
-            Date = DateTime.Now;
+            CreatedAt = DateTime.Now;
             Items = new List<SaleItem>();
         }
 
         /// <summary>
         /// Борлуулалтын ID-г авна.
         /// </summary>
+        [Key]
         public int Id { get; set; }
 
         /// <summary>
         /// Борлуулалтын огноо.
         /// </summary>
-        public DateTime Date { get; set; }
+        public DateTime CreatedAt { get; set; }
 
         /// <summary>
         /// Борлуулалтын нийт дүн.
         /// </summary>
-        public decimal TotalAmount { get; set; }
+        public decimal Total { get; set; }
 
         /// <summary>
         /// Борлуулалтын өгсөн дүн.
@@ -89,6 +92,11 @@ namespace PosLibrary.Models
         public Product Product { get; set; }
 
         /// <summary>
+        /// Бүтээгдэхүүн нэр.
+        /// </summary>
+        public string ProductName { get; set; } = string.Empty;
+
+        /// <summary>
         /// Бүтээгдэхүүн үлдэгдэл.
         /// </summary>
         public int Quantity { get; set; }
@@ -101,6 +109,6 @@ namespace PosLibrary.Models
         /// <summary>
         /// Бүтээгдэхүүн нийт үнэ.
         /// </summary>
-        public decimal TotalPrice { get; set; }
+        public decimal Subtotal { get; set; }
     }
 } 

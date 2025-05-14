@@ -115,26 +115,26 @@ namespace PosLibrary.Services
             {
                 var users = new List<User>
                 {
-                    new Manager 
-                    { 
-                        Username = "Manager", 
+                    new Manager
+                    {
+                        Username = "manager",
                         Password = "manager123",
-                        Role = "Manager",
-                        IsActive = true
+                        FullName = "System Manager",
+                        Role = UserRole.Manager
                     },
-                    new Cashier 
-                    { 
-                        Username = "Cashier1", 
+                    new Cashier
+                    {
+                        Username = "cashier1",
                         Password = "cashier123",
-                        Role = "Cashier",
-                        IsActive = true
+                        FullName = "Cashier 1",
+                        Role = UserRole.Cashier1
                     },
-                    new Cashier 
-                    { 
-                        Username = "Cashier2", 
+                    new Cashier
+                    {
+                        Username = "cashier2",
                         Password = "cashier123",
-                        Role = "Cashier",
-                        IsActive = true
+                        FullName = "Cashier 2",
+                        Role = UserRole.Cashier2
                     }
                 };
 
